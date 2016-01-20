@@ -44,8 +44,13 @@ public class TextEditor extends AbstractTextEditor {
 	private final DefaultCaret caret;
 
 	public TextEditor() {
-		Font font = new Font(Font.MONOSPACED, Font.PLAIN, 16);
-		setFont(font);
+		if (System.getProperty("os.name").toLowerCase().startsWith("windows")) {
+			Font font = new Font("ＭＳ ゴシック", Font.PLAIN, 16);
+			setFont(font);
+		} else {
+			Font font = new Font(Font.MONOSPACED, Font.PLAIN, 16);
+			setFont(font);
+		}
 
 		setEditorKit(new SmartEditorKit());
 
@@ -87,8 +92,7 @@ public class TextEditor extends AbstractTextEditor {
 			g2.setColor(getBackground());
 			Rectangle clip = g2.getClipBounds();
 			g2.fillRect(clip.x, clip.y, clip.width, clip.height);
-			// System.out.println(String.format("clip %d %d %d %d", clip.x,
-			// clip.y, clip.width, clip.height));
+			// System.out.println(String.format("clip %d %d %d %d", clip.x, clip.y, clip.width, clip.height));
 
 			g2.setColor(getForeground());
 			int base = clip.y;
@@ -139,8 +143,7 @@ public class TextEditor extends AbstractTextEditor {
 			g2.setPaint(lineCaretColor);
 			g2.fillRect(0, y, w, h);
 		}
-		// System.out.println(String.format("x: %d; y: %d; width: %d; height: %d",
-		// getX(), getY(), getWidth(), getHeight()));
+		// System.out.println(String.format("x: %d; y: %d; width: %d; height: %d", getX(), getY(), getWidth(), getHeight()));
 		super.paintComponent(g);
 	}
 }

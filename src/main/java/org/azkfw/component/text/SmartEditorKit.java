@@ -148,7 +148,7 @@ public class SmartEditorKit extends StyledEditorKit {
 
 	private static class WhitespaceLabelView extends LabelView {
 
-		private static final Color pc = new Color(130, 140, 120);
+		private static final Color COLOR = new Color(180, 190, 170);
 		private static final BasicStroke line = new BasicStroke(1f);
 		private static final BasicStroke dashed = new BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10f, new float[] { 1f }, 0f);
 
@@ -157,7 +157,7 @@ public class SmartEditorKit extends StyledEditorKit {
 		}
 
 		@Override
-		public void paint(Graphics g, Shape a) {
+		public void paint(final Graphics g, final Shape a) {
 			super.paint(g, a);
 			Graphics2D g2 = (Graphics2D) g.create();
 			Stroke stroke = g2.getStroke();
@@ -173,19 +173,19 @@ public class SmartEditorKit extends StyledEditorKit {
 				if ("　".equals(s)) {
 					int spaceWidth = fontMetrics.stringWidth("　");
 					g2.setStroke(dashed);
-					g2.setPaint(pc);
+					g2.setPaint(COLOR);
 					g2.drawLine(sx + 1, sy - 1, sx + spaceWidth - 2, sy - 1);
 					g2.drawLine(sx + 2, sy, sx + spaceWidth - 2, sy);
 				} else if (" ".equals(s)) {
 					int spaceWidth = fontMetrics.stringWidth(" ");
 					g2.setStroke(line);
-					g2.setPaint(pc);
+					g2.setPaint(COLOR);
 					g2.drawLine(sx + 1, sy - 1 - spaceWidth / 2, sx + 1, sy - 1);
 					g2.drawLine(sx + 1, sy - 1, sx + spaceWidth - 2, sy - 1);
 					g2.drawLine(sx + spaceWidth - 2, sy - 1, sx + spaceWidth - 2, sy - 1 - spaceWidth / 2);
 				} else if ("\t".equals(s)) {
 					int tabWidth = (int) getTabExpander().nextTabStop((float) sx, i) - sx;
-					g2.setColor(pc);
+					g2.setColor(COLOR);
 					g2.drawLine(sx + 2, sy - 0, sx + 2 + 2, sy - 0);
 					g2.drawLine(sx + 2, sy - 1, sx + 2 + 1, sy - 1);
 					g2.drawLine(sx + 2, sy - 2, sx + 2 + 0, sy - 2);

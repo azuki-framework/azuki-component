@@ -43,10 +43,13 @@ public class TextGradationsView extends JComponent {
 	private final JTextPane textArea;
 	private final FontMetrics fontMetrics;
 
+	private final Insets textInsets;
+
 	private final int fontWidth;
 
 	public TextGradationsView(final JTextPane textArea) {
 		this.textArea = textArea;
+		textInsets = textArea.getInsets();
 		Font font = textArea.getFont();
 		fontMetrics = getFontMetrics(font);
 		fontWidth = fontMetrics.charWidth('m');
@@ -92,18 +95,18 @@ public class TextGradationsView extends JComponent {
 		g.setColor(getBackground());
 		Rectangle clip = g.getClipBounds();
 		g.fillRect(clip.x, clip.y, clip.width, clip.height);
-		// System.out.println(String.format("clip %d %d %d %d", clip.x, clip.y,
-		// clip.width, clip.height));
+		 System.out.println(String.format("clip %d %d %d %d", clip.x, clip.y,
+		 clip.width, clip.height));
 
 		g.setColor(getForeground());
 		for (int x = 0; x <= clip.x + clip.width; x += fontWidth) {
 			int i = x / fontWidth;
 			if (0 == i % 10) {
-				g.drawLine(x, 2, x, 14);
+				g.drawLine(x + textInsets.left, 2, x + textInsets.left, 14);
 			} else if (5 == i % 10) {
-				g.drawLine(x, 6, x, 14);
+				g.drawLine(x + textInsets.left, 6, x + textInsets.left, 14);
 			} else {
-				g.drawLine(x, 10, x, 14);
+				g.drawLine(x + textInsets.left, 10, x + textInsets.left, 14);
 			}
 		}
 	}
