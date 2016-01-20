@@ -111,8 +111,7 @@ public class TextLineNumberView extends JComponent {
 		g.setColor(getBackground());
 		Rectangle clip = g.getClipBounds();
 		g.fillRect(clip.x, clip.y, clip.width, clip.height);
-		// System.out.println(String.format("clip %d %d %d %d", clip.x, clip.y,
-		// clip.width, clip.height));
+		// System.out.println(String.format("clip %d %d %d %d", clip.x, clip.y, clip.width, clip.height));
 
 		g.setColor(getForeground());
 		int base = clip.y;
@@ -132,8 +131,8 @@ public class TextLineNumberView extends JComponent {
 	private int getComponentWidth() {
 		Document doc = textArea.getDocument();
 		Element root = doc.getDefaultRootElement();
-		int lineCount = root.getElementIndex(doc.getLength());
-		int maxDigits = Math.max(3, String.valueOf(lineCount).length());
+		int lineCount = root.getElementIndex(doc.getLength()) + 1;
+		int maxDigits = Math.max(2, String.valueOf(lineCount).length());
 		Insets i = getBorder().getBorderInsets(this);
 		int width = maxDigits * fontWidth + i.left + i.right;
 		return width;
