@@ -24,6 +24,7 @@ import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.FocusEvent;
 
 import javax.swing.text.DefaultCaret;
 import javax.swing.text.Element;
@@ -69,6 +70,11 @@ public class TextEditor extends AbstractTextEditor {
 					height = r.height;
 					c.repaint();
 				}
+			}
+			@Override
+			public void focusGained(FocusEvent e) {
+				setVisible(true);
+				setSelectionVisible(true);
 			}
 		};
 		caret.setBlinkRate(getCaret().getBlinkRate());
